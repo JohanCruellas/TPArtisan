@@ -1,0 +1,4 @@
+﻿front/.vscode
+api/node_modules
+api/.env
+api/package-lock.json
