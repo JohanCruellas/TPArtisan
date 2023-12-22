@@ -5,7 +5,7 @@ const { User } = db.models
 verifyToken = async (req, res, next) => {
     try {
         let token = req.headers['x-access-token']
-        let requestUser = JSON.parse(req.headers['x-access-user'])
+        let requestUser = req.headers['x-access-user'] ? JSON.parse(req.headers['x-access-user']) : null
         if (!token) {
             return res.status(401)
                 .send({
@@ -40,6 +40,7 @@ verifyToken = async (req, res, next) => {
         })
 
     } catch (error) {
+        console.log(error)
         return res.status(500).send({
             code: 'INTERNAL_ERROR',
             message: error

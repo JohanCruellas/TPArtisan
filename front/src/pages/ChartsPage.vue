@@ -4,7 +4,7 @@
             <div class="leftMenu">
                 <q-list>
                     <q-item v-for="(furniture, furnitureIndex) in furnitures" :key="furnitureIndex" dense clickable
-                        @click="selectedFurniture = furniture" class="q-pa-xs">{{ furniture.name }}</q-item>
+                        @click="selectedFurniture = furniture" class="q-pa-xs furnitureItem" :class="furniture.id === selectedFurniture?.id ? 'selection' : ''">{{ furniture.name }}</q-item>
                 </q-list>
             </div>
             <div class="pageContent">
@@ -55,13 +55,13 @@ export default defineComponent({
         chartData() {
             return {
                 labels: ['Chiffre d\'affaire', 'Coût de production', 'Marge'],
-                    datasets: [
-                        {
-                            label: '€',
-                            backgroundColor: '#f87979',
-                            data: [this.getCA, this.getProductionCost, this.getMargin]
-                        }
-                    ]
+                datasets: [
+                    {
+                        label: '€',
+                        backgroundColor: '#f87979',
+                        data: [this.getCA, this.getProductionCost, this.getMargin]
+                    }
+                ]
             }
         },
         getCA() {
@@ -92,8 +92,22 @@ export default defineComponent({
 
 .leftMenu {
     min-width: 300px;
-    background-color: #f5f5f5;
+    padding: 5px;
+    background-color: #5e95cc;
+    color: white;
+    font-family: inherit;
+    font-weight: 500;
     border-right: 1px solid #e0e0e0;
+}
+
+.furnitureItem {
+    border-radius: 10px;
+    padding: 5px 20px;
+    margin: 5px;
+}
+
+.selection {
+    background-color: #226cb6;
 }
 
 .pageContent {
