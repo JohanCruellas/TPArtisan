@@ -18,7 +18,14 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: true,
         },
-
+        categoryId: {
+            type: DataTypes.UUID,
+            allowNull: true,
+        },
+        quantitySold: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
+        },
     },
         {
             timestamps: true,

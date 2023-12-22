@@ -1,17 +1,33 @@
 <template>
-  <q-page class="flex flex-center">
-    <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
-    >
+  <q-page class="flex column">
+    <div v-for="(category, categoryIndex) in categories" :key="categoryIndex">
+      <q-item class="text-h6">{{ category.label }}s</q-item>
+      <FurnitureSlider :furnitures="category.furnitures" />
+    </div>
   </q-page>
 </template>
 
 <script>
 import { defineComponent } from 'vue'
+import categoryService from 'src/services/category.service'
+import FurnitureSlider from '../components/FurnitureSlider.vue'
 
 export default defineComponent({
-  name: 'IndexPage'
+  name: 'IndexPage',
+  components: {
+    FurnitureSlider
+  },
+  data() {
+    return {
+      categories: []
+    }
+  },
+  methods: {
+
+  },
+  async created() {
+    let response = await categoryService.getAll()
+    this.categories = response.data.categories
+  }
 })
 </script>

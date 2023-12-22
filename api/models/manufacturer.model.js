@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-    const Material = sequelize.define('Material', {
+    const Manufacturer = sequelize.define('Manufacturer', {
         id: {
             type: DataTypes.UUID,
             primaryKey: true,
@@ -8,26 +8,12 @@ module.exports = (sequelize, DataTypes) => {
         },
         name: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         description: {
             type: DataTypes.STRING,
             allowNull: true,
         },
-        type: {
-            type: DataTypes.ENUM('Wood', 'Metal', 'Plastic', 'Glass', 'Other'),
-        },
-        isEcoFriendly: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false,
-        },
-        creatorId : {
-            type: DataTypes.UUID,
-            allowNull: true,
-        },
-        cost : {
-            type: DataTypes.INTEGER,
-        }
     },
         {
             timestamps: true,

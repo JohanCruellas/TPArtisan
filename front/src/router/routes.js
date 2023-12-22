@@ -2,9 +2,24 @@
 const routes = [
   {
     path: '/',
+    component: () => import('pages/LoginPage.vue')
+  },
+  {
+    path: '/Main',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      {
+        path: '', name: 'Main',
+        component: () => import('pages/IndexPage.vue')
+      },
+      {
+        path: 'Admin', name: 'Admin',
+        component: () => import('pages/AdminPage.vue')
+      },
+      {
+        path : 'Charts', name: 'Charts',
+        component: () => import('pages/ChartsPage.vue')
+      }
     ]
   },
 
